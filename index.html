@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DX-Ball Web Clone</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-wrapper">
+    <h1>DX-Ball Web Clone</h1>
+
+    <section class="hud">
+      <div>Очки: <span id="score">0</span></div>
+      <div>Жизни: <span id="lives">3</span></div>
+      <div>Уровень: <span id="level">1</span></div>
+    </section>
+
+    <canvas id="gameCanvas" width="900" height="560" aria-label="Игровое поле"></canvas>
+
+    <section class="controls">
+      <p><strong>Управление:</strong> ← → / A D / мышь</p>
+      <p>Пробел — старт / перезапуск после поражения</p>
+    </section>
+
+    <p id="overlayMessage" class="overlay-message">Нажми пробел, чтобы начать</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
