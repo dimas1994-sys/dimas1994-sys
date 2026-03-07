@@ -1,0 +1,9 @@
+{
+  "name": "secure-online-chat",
+  "version": "1.0.0",
+  "description": "Онлайн чат с регистрацией, аватарками, сквозным шифрованием и эмодзи",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
