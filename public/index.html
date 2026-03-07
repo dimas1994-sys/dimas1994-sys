@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Online Chat</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section id="authSection" class="card">
+      <h1>🔐 Онлайн-чат</h1>
+      <p>Регистрация + аватар + сквозное шифрование (E2EE) + эмодзи 😀</p>
+
+      <label>Имя пользователя
+        <input id="username" type="text" maxlength="24" placeholder="Например, Alex" />
+      </label>
+
+      <label>Комната
+        <input id="room" type="text" value="main" maxlength="30" />
+      </label>
+
+      <label>Секретный ключ комнаты
+        <input id="secret" type="password" placeholder="Общий пароль для участников" />
+      </label>
+
+      <label>Аватар
+        <input id="avatar" type="file" accept="image/*" />
+      </label>
+
+      <button id="registerBtn">Войти в чат</button>
+    </section>
+
+    <section id="chatSection" class="card hidden">
+      <header>
+        <div>
+          <h2 id="chatTitle">Комната</h2>
+          <small>На Windows откройте панель эмодзи: <b>Win + .</b></small>
+        </div>
+        <button id="logoutBtn" class="secondary">Выйти</button>
+      </header>
+
+      <div id="messages" class="messages"></div>
+
+      <div class="composer">
+        <input id="messageInput" type="text" placeholder="Введите сообщение..." />
+        <div class="emoji-row">
+          <button class="emoji-btn" data-emoji="😀">😀</button>
+          <button class="emoji-btn" data-emoji="😂">😂</button>
+          <button class="emoji-btn" data-emoji="🔥">🔥</button>
+          <button class="emoji-btn" data-emoji="❤️">❤️</button>
+          <button class="emoji-btn" data-emoji="👍">👍</button>
+        </div>
+        <button id="sendBtn">Отправить</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
