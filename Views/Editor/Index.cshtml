@@ -1,0 +1,33 @@
+<section class="grid">
+    <aside class="panel">
+        <h2>Ресурсы</h2>
+        <form id="resource-form" class="stack-form">
+            <input name="name" placeholder="Имя ресурса" required />
+            <select name="type" required>
+                <option value="">Тип</option>
+                <option>Sprite</option>
+                <option>Audio</option>
+                <option>Tilemap</option>
+                <option>Script</option>
+            </select>
+            <input name="path" placeholder="Путь / URL" />
+            <button type="submit">Добавить ресурс</button>
+        </form>
+        <ul id="resource-list" class="item-list"></ul>
+    </aside>
+
+    <section class="panel wide">
+        <h2>Визуальный скриптинг</h2>
+        <form id="node-form" class="inline-form">
+            <input name="title" placeholder="Название ноды" required />
+            <input name="category" placeholder="Категория" value="Gameplay" />
+            <button type="submit">Создать ноду</button>
+        </form>
+        <div id="node-board" class="node-board"></div>
+    </section>
+
+    <aside class="panel">
+        <h2>Готовые шаблоны</h2>
+        <div id="template-list" class="template-list"></div>
+    </aside>
+</section>

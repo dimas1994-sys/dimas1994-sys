@@ -1,0 +1,94 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, Segoe UI, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #14151c;
+  color: #f1f3ff;
+}
+
+.topbar {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #31374a;
+  background: #1a1e2a;
+}
+
+.page {
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 280px 1fr 280px;
+}
+
+.panel {
+  border: 1px solid #2f3447;
+  border-radius: 12px;
+  background: #1b2030;
+  padding: 1rem;
+}
+
+.wide {
+  min-height: 70vh;
+}
+
+.stack-form,
+.inline-form {
+  display: grid;
+  gap: .5rem;
+  margin-bottom: .8rem;
+}
+
+.inline-form {
+  grid-template-columns: 1fr 1fr auto;
+}
+
+input,
+select,
+button {
+  border: 1px solid #3f4660;
+  background: #101524;
+  color: inherit;
+  border-radius: 8px;
+  padding: .55rem .7rem;
+}
+
+button {
+  background: #4f7cff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .4rem;
+}
+
+.item-list li,
+.template,
+.node {
+  border: 1px solid #39405b;
+  border-radius: 10px;
+  padding: .6rem;
+  background: #101625;
+}
+
+.node-board {
+  display: grid;
+  gap: .7rem;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  margin-top: 1rem;
+}
+
+.template-list {
+  display: grid;
+  gap: .7rem;
+}
