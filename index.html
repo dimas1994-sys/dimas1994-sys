@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Tracker - Real-time Disaster Monitoring</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <h1><i class="fas fa-globe-americas"></i> Disaster Tracker</h1>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search city or country..." />
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="header-right">
+            <button id="notificationsBtn" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge" id="notificationBadge">0</span>
+            </button>
+            <button id="locationBtn" title="My Location">
+                <i class="fas fa-location-arrow"></i>
+            </button>
+            <button id="journalBtn" title="Disaster Journal">
+                <i class="fas fa-book"></i>
+            </button>
+            <button id="themeBtn" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <select id="languageSelect" title="Language">
+                <option value="en">EN</option>
+                <option value="ru">RU</option>
+                <option value="es">ES</option>
+                <option value="fr">FR</option>
+                <option value="de">DE</option>
+                <option value="zh">ZH</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Statistics Cards -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon affected">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 data-translate="affected">Affected</h3>
+                    <p id="affectedCount">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon fatalities">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 data-translate="fatalities">Fatalities</h3>
+                    <p id="fatalitiesCount">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon missing">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 data-translate="missing">Missing</h3>
+                    <p id="missingCount">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon disasters">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 data-translate="disasters">Disasters</h3>
+                    <p id="disastersCount">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Widget -->
+        <section class="weather-widget" id="weatherWidget">
+            <div class="weather-main">
+                <i class="fas fa-cloud-sun weather-icon" id="weatherIcon"></i>
+                <div class="weather-temp">
+                    <span id="weatherTemp">--</span>°C
+                </div>
+                <div class="weather-desc" id="weatherDesc">--</div>
+            </div>
+            <div class="weather-details">
+                <div class="weather-detail">
+                    <i class="fas fa-wind"></i>
+                    <span id="windSpeed">-- m/s</span>
+                </div>
+                <div class="weather-detail">
+                    <i class="fas fa-tint"></i>
+                    <span id="humidity">--%</span>
+                </div>
+                <div class="weather-detail">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                    <span id="pressure">-- hPa</span>
+                </div>
+                <div class="weather-detail">
+                    <i class="fas fa-eye"></i>
+                    <span id="visibility">-- km</span>
+                </div>
+            </div>
+            <div class="weather-location" id="weatherLocation">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>--</span>
+            </div>
+        </section>
+
+        <!-- Content Area -->
+        <div class="content-wrapper">
+            <!-- Sidebar Filter -->
+            <aside class="sidebar" id="sidebar">
+                <h3 data-translate="filters">Filters</h3>
+                <div class="filter-group">
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="earthquake" />
+                        <span class="filter-color earthquake"></span>
+                        <span data-translate="earthquakes">Earthquakes</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="fire" />
+                        <span class="filter-color fire"></span>
+                        <span data-translate="fires">Fires</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="volcano" />
+                        <span class="filter-color volcano"></span>
+                        <span data-translate="volcanoes">Volcanoes</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="landslide" />
+                        <span class="filter-color landslide"></span>
+                        <span data-translate="landslides">Landslides</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="flood" />
+                        <span class="filter-color flood"></span>
+                        <span data-translate="floods">Floods</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="hurricane" />
+                        <span class="filter-color hurricane"></span>
+                        <span data-translate="hurricanes">Hurricanes</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="tornado" />
+                        <span class="filter-color tornado"></span>
+                        <span data-translate="tornadoes">Tornadoes</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="typhoon" />
+                        <span class="filter-color typhoon"></span>
+                        <span data-translate="typhoons">Typhoons</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="mudflow" />
+                        <span class="filter-color mudflow"></span>
+                        <span data-translate="mudflows">Mudflows</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" checked data-filter="radiation" />
+                        <span class="filter-color radiation"></span>
+                        <span data-translate="radiation">Radiation</span>
+                    </label>
+                </div>
+                <button id="toggleSidebar" class="toggle-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </aside>
+
+            <!-- Map Container -->
+            <section class="map-section">
+                <div id="map"></div>
+                <div class="map-controls">
+                    <button id="refreshBtn" title="Refresh Data">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="last-update">
+                        <span data-translate="lastUpdate">Last Update:</span>
+                        <span id="lastUpdateTime">--:--:--</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Disaster Tracker. All rights reserved.
+            </div>
+            <div class="services-used">
+                <h4 data-translate="dataSources">Data Sources:</h4>
+                <ul>
+                    <li><a href="https://earthquake.usgs.gov/" target="_blank">USGS Earthquakes</a></li>
+                    <li><a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank">NASA FIRMS (Fires)</a></li>
+                    <li><a href="https://www.volcanodiscovery.com/" target="_blank">Volcano Discovery</a></li>
+                    <li><a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a></li>
+                    <li><a href="https://reliefweb.int/" target="_blank">ReliefWeb</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="panel-header">
+            <h3 data-translate="notifications">Notifications</h3>
+            <button id="closeNotifications"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Notifications will be added here -->
+        </div>
+    </div>
+
+    <!-- Modal for Disaster Details -->
+    <div class="modal" id="disasterModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Disaster Details</h3>
+                <button id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
