@@ -22,7 +22,7 @@
         </div>
         
         <div class="header-right">
-            <button id="logBtn" title="Disaster Log"><i class="fas fa-book"></i></button>
+            <a href="log.html" id="logBtn" title="Disaster Log"><button><i class="fas fa-book"></i></button></a>
             <button id="notificationBtn" title="Notifications">
                 <i class="fas fa-bell"></i>
                 <span id="notifBadge" class="badge">0</span>
@@ -53,43 +53,43 @@
                 <input type="range" id="radiusSlider" min="50" max="2000" step="50" value="500" />
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="earthquakeFilter" checked />
+                <input type="checkbox" id="earthquakeFilter" checked data-filter="earthquake" />
                 <label for="earthquakeFilter"><i class="fas fa-house-crack"></i> <span data-translate="earthquake">Earthquake</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="fireFilter" checked />
+                <input type="checkbox" id="fireFilter" checked data-filter="fire" />
                 <label for="fireFilter"><i class="fas fa-fire"></i> <span data-translate="fire">Fire</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="volcanoFilter" checked />
+                <input type="checkbox" id="volcanoFilter" checked data-filter="volcano" />
                 <label for="volcanoFilter"><i class="fas fa-mountain"></i> <span data-translate="volcano">Volcano</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="landslideFilter" checked />
+                <input type="checkbox" id="landslideFilter" checked data-filter="landslide" />
                 <label for="landslideFilter"><i class="fas fa-hill-rockslide"></i> <span data-translate="landslide">Landslide</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="floodFilter" checked />
+                <input type="checkbox" id="floodFilter" checked data-filter="flood" />
                 <label for="floodFilter"><i class="fas fa-water"></i> <span data-translate="flood">Flood</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="hurricaneFilter" checked />
+                <input type="checkbox" id="hurricaneFilter" checked data-filter="hurricane" />
                 <label for="hurricaneFilter"><i class="fas fa-wind"></i> <span data-translate="hurricane">Hurricane</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="tornadoFilter" checked />
+                <input type="checkbox" id="tornadoFilter" checked data-filter="tornado" />
                 <label for="tornadoFilter"><i class="fas fa-cloud-showers-heavy"></i> <span data-translate="tornado">Tornado</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="typhoonFilter" checked />
+                <input type="checkbox" id="typhoonFilter" checked data-filter="typhoon" />
                 <label for="typhoonFilter"><i class="fas fa-wind"></i> <span data-translate="typhoon">Typhoon</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="mudflowFilter" checked />
+                <input type="checkbox" id="mudflowFilter" checked data-filter="mudflow" />
                 <label for="mudflowFilter"><i class="fas fa-mound"></i> <span data-translate="mudflow">Mudflow</span></label>
             </div>
             <div class="filter-item">
-                <input type="checkbox" id="radiationFilter" checked />
+                <input type="checkbox" id="radiationFilter" checked data-filter="radiation" />
                 <label for="radiationFilter"><i class="fas fa-radiation"></i> <span data-translate="radiation">Radiation</span></label>
             </div>
         </aside>
@@ -138,7 +138,7 @@
 
     <footer>
         <p>&copy; 2024 Disaster Tracker. All rights reserved.</p>
-        <p>Data sources: USGS, NASA FIRMS, GDACS, OpenWeatherMap, NCEI</p>
+        <p>Data sources: USGS, NASA FIRMS, GDACS, Open-Meteo, NCEI</p>
     </footer>
 
     <script src="translations.js"></script>
