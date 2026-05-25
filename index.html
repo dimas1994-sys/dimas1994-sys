@@ -34,13 +34,13 @@
             </div>
             <button id="themeBtn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
             <select id="languageSelect">
-                <option value="en">🇺🇸 EN</option>
-                <option value="ru">🇷🇺 RU</option>
-                <option value="uk">🇺🇦 UK</option>
-                <option value="es">🇪🇸 ES</option>
-                <option value="fr">🇫🇷 FR</option>
-                <option value="de">🇩🇪 DE</option>
-                <option value="zh">🇨🇳 ZH</option>
+                <option value="en">EN</option>
+                <option value="ru">RU</option>
+                <option value="uk">UK</option>
+                <option value="es">ES</option>
+                <option value="fr">FR</option>
+                <option value="de">DE</option>
+                <option value="zh">ZH</option>
             </select>
         </div>
     </header>
@@ -137,9 +137,24 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Disaster Tracker. All rights reserved.</p>
-        <p>Data sources: USGS, NASA FIRMS, GDACS, Open-Meteo, NCEI</p>
+        <p>&copy; <span id="currentYear"></span> Disaster Tracker. All rights reserved.</p>
+        <p>Data sources: 
+            <a href="https://earthquake.usgs.gov/" target="_blank">USGS</a>, 
+            <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank">NASA FIRMS</a>, 
+            <a href="https://www.gdacs.org/" target="_blank">GDACS</a>, 
+            <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a>, 
+            <a href="https://www.ncei.noaa.gov/" target="_blank">NCEI</a>
+        </p>
     </footer>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel" class="notifications-panel hidden">
+        <div class="panel-header">
+            <h4 data-translate="notifications">Notifications</h4>
+            <button id="closeNotifBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="notificationsList" class="notifications-list"></div>
+    </div>
 
     <script src="translations.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
